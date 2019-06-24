@@ -1,0 +1,107 @@
+<div class="shop-info">
+  	<div class="shop-image">
+  		<%= attachment_image_tag @shop, :shop_image, size:'200x300',class: "card-img-top",fallback: "no_image.png"%>
+        <table class="custom_tb">
+          <tbody>
+            <tr>
+              <th>住所</th>
+              <td><%= @shop.address %></td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><%= @shop.phone_number %></td>
+            </tr>
+          </tbody>
+        </table>
+<!---GMAPAPI------------------>
+        <div id="shop-map"></div>
+<!---GMAPAPI------------------>
+  	</div>
+    <div class="text-column">
+      	<div class="shop-title"><%= @shop.shop_name %></div>
+      	<div class="shop-introduction"><%= @shop.introduction %></div>
+      <p><i class="far fa-check-circle"></i></i>おすすめメニュー</p>
+      	<div class="menu">
+          <div class="menu-title"><%= @shop.first_menu %></div>
+          <div class="price"><%= @shop.first_price %>円(税抜き)</div>
+        </div>
+      	<div class="menu">
+          <div class="menu-title"><%= @shop.second_menu %></div>
+          <div class="price"><%= @shop.second_price %>円(税抜き)</div>
+        </div>
+        <p><i class="far fa-check-circle"></i></i>営業時間</p>
+        <div class="business-time"><%= @shop.start_time %> ~ <%= @shop.last_time %></div>
+        <p><i class="far fa-check-circle"></i></i>定休日</p>
+        <div class="holiday"><%= @shop.holiday %></div>
+        <div class="favorite-button">
+          <% if user_signed_in? %>
+             <% if !Favorite.exists?(user_id:current_user.id, shop_id:@shop.id) %>
+                <%= link_to "お気に入り登録",shop_favorites_path(@shop),method: :post,class: "btn-warning" %>
+             <% else %>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+</div>
+<div class="comment">
+
+  <%= form_for [@shop, @post_comment] do |f| %>
+      <div class="row">
+          <div class="col-sm-12">
+              <%= f.text_field :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+          </div>
+      </div>
+      <%= f.submit "コメント送信", class: "btn btn-secondary" %>
+  <% end %>
+
+  <div class="line-bc">
+    <% @shop.post_comments.each do |post_comment| %>
+     		<li class="comment">
+              <div class="comment-body bb">
+                  <div class="comment-text">
+                      <div class="comment-author clearfix">
+                          <%= post_comment.user.name %>さん
+                          <span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+                      </div>
+                      <div class="balloon6">
+                      	<div class="chatting">
+                            	<div class="faceicon">
+                               <%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg" %>
+                            	</div>
+          					　　　　　<div class="says">
+                        		  <%= post_comment.comment %>
+                        		</div>
+                        		<% if user_signed_in? && current_user.id == post_comment.user_id%>
+                        		<%= link_to "削除", shop_post_comment_path(@shop,post_comment.id), method: :delete, "data-confirm" => "本当に削除してよろしいのですか?" %>
+                            <% elsif user_signed_in? && current_user.admin %>
+                            <%= link_to "削除", shop_post_comment_path(@shop,post_comment.id), method: :delete, "data-confirm" => "本当に削除してよろしいのですか?" %>
+                        		<% end %>
+                      	</div>
+                      </div>
+                  </div>
+              </div>
+          </li>
+      <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    function initMap(){
+      const myLatLng = {lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>}; //変数をここで定義
+      let map = new google.maps.Map(document.getElementById('shop-map'),{
+        center: myLatLng,
+        zoom: 15
+      });
+      var marker = new google.maps.Marker({   //マーカーをつける
+          position: myLatLng,
+          map: map
+      });
+    }
+
+</script>
+<script src="//maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_KEY']%>&callback=initMap"></script>
+
+
+
+
+

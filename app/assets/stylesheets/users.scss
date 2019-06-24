@@ -1,0 +1,33 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* users_edit */
+
+.userinfo{
+	padding: 10px;
+}
+
+.info-panel {
+	padding: 20px;
+}
+
+/* users_editとshowのプロフ画像の丸み */
+
+.imagelabel img {
+	border-radius: 50%;
+}
+
+/* users_show */
+
+.user-post {
+	padding: 50px;
+}
+
+.user-post h3 {
+	color: #333333;
+}
+
+.column-title {
+	padding: 0 0 20px 40px;
+}

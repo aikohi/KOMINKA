@@ -1,0 +1,40 @@
+<sectin>
+  <div class="search">
+    <div class="form-inline">
+    <%= form_tag(admin_shops_path, :method => 'get' ) do %>
+      <%= text_field_tag :search,params[:search], class: "form-control shadow-sm",placeholder: "地域で検索　例：横浜" %>
+      <%= submit_tag ' 検索 ', :address => nil %>
+    <% end %>
+    </div>
+  </div>
+	<table class="table">
+  	 <thead>
+      <tr>
+	   <th>現在宣伝中のカフェ一覧</th>
+	   <th></th>
+     <th></th>
+     <th></th>
+      </tr>
+  	 </thead>
+  	 <tbody>
+
+		<% @shops.each do |shop| %>
+	<tr>
+	  <td>
+       <%= attachment_image_tag shop, :shop_image, size:'100x100',fallback: "no_image.png"%>
+       <%= shop.shop_name %>
+    </td>
+    <td>
+       <%= shop.address %>
+    </td>
+    <td>
+       <%= shop.created_at %>
+    </td>
+	   <td><%= link_to "詳細", shop_path(shop.id), class: "btn btn-outline-primary" %>
+         <%= link_to "消去" ,admin_shop_path(shop.id), method: :delete, "data-confirm" => "削除しますか?", class: "btn btn-outline-danger" %>
+     </td>
+    </tr>
+    <% end %>
+    </tbody>
+ </table>
+</sectin>

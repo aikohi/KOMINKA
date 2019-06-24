@@ -1,0 +1,73 @@
+// Place all the styles related to the Tops controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*  トップページ   */
+
+.carousel-item {
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.logo h1 {
+  font-size: 60px;
+  font-weight: bold; /*太字に*/
+}
+
+.logo {
+  position: absolute;
+  width:450px;
+  background-color:rgba(255,255,255,0.65);
+  text-align:center;
+  color: #1a1a1a;
+  font-family :Quicksand, sans-serif;
+  top: 45%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding: 40px;
+  border-radius: 50%;
+  }
+
+.index-button{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin:0;
+}
+
+
+.about {
+  width:900px;
+  margin: 0 auto;
+  margin-top: 20px;
+  color: #1a1a1a;
+}
+
+.introduction {
+  width: 900px;
+  text-align: center;
+}
+
+.photo-panel{
+  width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.photo {
+  margin-top: 80px;
+}
+
+.col-ld-4 img {
+　width: 200px;
+  height: 200px;
+  margin: 18px;
+  border-radius: 50%;
+}

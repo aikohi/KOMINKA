@@ -1,0 +1,22 @@
+<h3 class="favorite-user-name"><%= @user.name %>さんのお気に入り</h3>
+<div class="shops">
+    <div class="container">
+      <div class="row">
+          <% @favorites.each do |favorite| %>
+            <div class="col-lg-4 md-4"style="margin-bottom:50px;">
+               <div class="card">
+                <%= attachment_image_tag favorite.shop,:shop_image, size:"100x250",class: "card-img-top",fallback: "no_image.png" %>
+                  <div class="card-body">
+                   <p class="card-address"><i class="fas fa-map-marker-alt"></i><%= favorite.shop.address %></p>
+                    <h5 class="card-title"><%= link_to shop_path(favorite.shop.id) do %><%= favorite.shop.shop_name %></h5>
+                    <% end %>
+                  <% if user_signed_in? %>
+                    <%= link_to 'お気に入りを解除する', shop_favorites_path(favorite.shop.id), method: :delete, class: "btn-outline-success" %>
+                  <% end %>
+                  </div>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>

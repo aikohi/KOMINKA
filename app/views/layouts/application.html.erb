@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cafenavikominka</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div class="u-header">
+        <p class="u-header-text">古民家カフェ専門の検索・宣伝サイト　｜　Cafenavi KOMINKA</p>
+      </div>
+      
+      <div class="main-menu">
+        <nav>
+          <ul>
+            <li class="f-left"><%= link_to image_tag("logo.png",:size =>'200x30'), root_path, title: "トップに戻る" %></li>
+            <% if user_signed_in? %>
+                <li>
+                  <%= link_to "カフェを探す", shops_path %>
+                </li>
+                <li>
+                  <%= link_to "お気に入り", user_favorites_path(current_user) %></li>
+                <li>
+                  <%= link_to '宣伝中のカフェ', user_path(current_user.id) %></li>
+                <li>
+                  <%= link_to "宣伝する", new_shop_path %>
+                </li>
+            <% if current_user.admin == true %>
+                   <li>
+                    <%= link_to '会員一覧', admin_users_path %>
+                   </li>
+                  <li>
+                    <%= link_to "カフェ一覧", admin_shops_path %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                  </li>
+            <% else %>
+                <li>
+                  <%= link_to "カフェを探す", shops_path %>
+                </li>
+                <li>
+                  <%= link_to "新規会員登録", new_user_registration_path %>
+                </li>
+                <li>
+                  <%= link_to "ログイン",new_user_session_path %>
+                </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+<!-----ハンバーガーボタン------------->
+      <div class="zdo_drawer_menu">
+           <div class="zdo_drawer_bg"></div>
+            <button type="button" class="zdo_drawer_button">
+              <span class="zdo_drawer_bar zdo_drawer_bar1"></span>
+              <span class="zdo_drawer_bar zdo_drawer_bar2"></span>
+              <span class="zdo_drawer_bar zdo_drawer_bar3"></span>
+             <!--<span class="zdo_drawer_menu_text zdo_drawer_text">MENU</span>-->
+              <span class="zdo_drawer_close zdo_drawer_text">CLOSE</span>
+            </button>
+            <nav class="zdo_drawer_nav_wrapper">
+              <ul class="zdo_drawer_nav">
+                <% if user_signed_in? %>
+                  <li>
+                    <%= link_to "カフェを探す", shops_path %>
+                  </li>
+                  <li>
+                    <%= link_to "お気に入り", user_favorites_path(current_user) %></li>
+                  <li>
+                    <%= link_to '宣伝中のカフェ', user_path(current_user.id) %></li>
+                  <li>
+                    <%= link_to "宣伝する", new_shop_path %>
+                  </li>
+                <% if current_user.admin == true %>
+                     <li>
+                      <%= link_to '会員一覧', admin_users_path %>
+                     </li>
+                    <li>
+                      <%= link_to "カフェ一覧", admin_shops_path %>
+                    </li>
+                  <% end %>
+                  <li>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                    </li>
+                <% else %>
+                  <li>
+                    <%= link_to "カフェを探す", shops_path %>
+                  </li>
+                  <li>
+                    <%= link_to "新規会員登録", new_user_registration_path %>
+                  </li>
+                  <li>
+                    <%= link_to "ログイン",new_user_session_path %>
+                  </li>
+              <% end %>
+              </ul>
+            </nav>
+      </div>
+<!---------------->
+    </header>
+    <div class="header-padding"></div>
+    <%= yield %>
+    <footer>
+        <p class="footer-text">Cafenavi KOMINKA</p>
+      </div>
+    </footer>
+  </body>
+</html>

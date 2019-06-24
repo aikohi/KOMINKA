@@ -1,0 +1,60 @@
+<div class="forms">
+  <div class="form-panel">
+    <h2>店鋪内容を変更する</h2>
+    <%= form_for(@shop) do |f| %>
+
+      <div class="form-item">
+        <%= f.label :店名 %><br />
+        <%= f. text_field :shop_name %>
+      </div>
+      <div class="form-item">
+        <%= f.label :店の説明 %><br />
+        <%= f.text_area :introduction, class: "form-control" %>
+      </div>
+      <div class="form-item">
+        <%= f.label :店の写真 %>
+        <%= f.attachment_field :shop_image, placeholder: "ファイルを選択" %>
+      </div>
+      <div class="form-item">
+        <%= f.label :住所 %><br />
+        <%= f.text_field :address %>
+      </div>
+      <div class="form-item">
+        <%= f.label :電話番号 %><br />
+        <%= f.text_field :phone_number %>
+      </div>
+      <div class="form-item">
+        <%= f.label :おすすめメニュー１ %><br />
+        <%= f.text_field :first_menu %>
+      </div>
+      <div class="form-item">
+        <%= f.label :おすすめメニュー１の価格 %><br />
+        <%= f.text_field :first_price %>
+      </div>
+      <div class="form-item">
+        <%= f.label :おすすめメニュー２ %><br />
+        <%= f.text_field :second_menu %>
+      </div>
+      <div class="form-item">
+        <%= f.label :おすすめメニュー２の価格 %><br />
+        <%= f.text_field :second_price %>
+      </div>
+      <div class="form-item">
+        <%= f.label :営業開始時間 %><br />
+        <%= f.text_field :start_time %>
+      </div>
+      <div class="form-item">
+        <%= f.label :営業終了時間 %><br />
+        <%= f.text_field :last_time %>
+      </div>
+      <div class="form-item">
+        <%= f.label :定休日 %><br />
+        <%= f.text_field :holiday %>
+      </div>
+
+      <div class="button-panel">
+        <%= f.submit "変更を保存" , class: "button-panel btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
