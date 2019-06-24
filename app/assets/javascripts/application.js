@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-
-
 //= require rails-ujs
 //= require activestorage
 //= require bootstrap-sprockets
@@ -42,22 +40,3 @@ $(document).on('ready page:load',function() {
 		})
 	});
 });
-
-//$(function () {
-	/*$('.shop-map').getPosition(function() {
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-            window.location.href = "/shops/search_location?latitude="+position.coords.latitude+"&longitude="+position.coords.longitude
-        })
-    })
-});
-$(function(error) {
-          switch(error.code) {
-            case 1: //PERMISSION_DENIED
-              alert("位置情報の利用が許可されていません");
-              break;
-            case 2: //POSITION_UNAVAILABLE
-              alert("現在位置が取得できませんでした");
-              break;
-          }
-      });*/
